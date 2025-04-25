@@ -1,17 +1,21 @@
 MToolkit
-MToolkit is a cross-platform CLI tool that provides a collection of utility mini-tools for developers and power users. It features a sleek interface and is designed to be extensible, allowing new tools to be added easily.
+
+MToolkit is a cross-platform command-line interface (CLI) tool that provides a collection of powerful and easy-to-use utilities for developers and power users. With a sleek interface and extensible design, MToolkit makes tasks like file encryption and hashing simple and secure.
 Features
 
-File Encryption/Decryption: Securely encrypt and decrypt files using AES-256-GCM with a password.
-Cross-Platform: Works on Windows, macOS, and Linux.
-Extensible: Easily add new mini-tools as subcommands.
+File Encryption/Decryption: Securely encrypt and decrypt files using AES-256-GCM with password-based key derivation.
+File Hashing: Generate SHA-256 hashes for file integrity verification.
+Cross-Platform: Runs seamlessly on Windows, macOS, and Linux.
+Extensible: Easily add new mini-tools to expand functionality.
+User-Friendly: Colorful ASCII banner and clear command structure.
 
 Installation
 Install MToolkit globally via npm:
-npm install -g mtoolkit
+npm install -g @mugunth140/mtoolkit
 
+Ensure you have Node.js (v14 or later) installed.
 Usage
-Run the CLI:
+Run the MToolkit CLI:
 mtoolkit
 
 This displays a colorful banner and lists available tools. Use --help for detailed command information:
@@ -19,35 +23,54 @@ mtoolkit --help
 
 Available Commands
 
-Encrypt a File:
-mtoolkit encrypt <input> <output>
 
-Encrypts the input file and saves it to the output file. Prompts for a password.
 
-Decrypt a File:
-mtoolkit decrypt <input> <output>
+Command
+Description
 
-Decrypts the input file and saves it to the output file. Requires the same password used for encryption.
+
+
+encrypt <input> <output>
+Encrypt a file with a password
+
+
+decrypt <input> <output>
+Decrypt a file with the same password
+
+
+hash <input>
+Generate a SHA-256 hash of a file
 
 
 Examples
-Encrypt a file:
+Encrypt a File
 mtoolkit encrypt document.txt document.enc
 
-Decrypt a file:
+
+Prompts for a password and encrypts document.txt to document.enc.
+
+Decrypt a File
 mtoolkit decrypt document.enc document_decrypted.txt
 
-Security Notes
 
-Encryption: Uses AES-256-GCM with a PBKDF2-derived key, random salt, and IV for secure file encryption.
-Password: Ensure you remember the password, as it cannot be recovered.
-Storage: The encrypted file includes salt, IV, and authentication tag.
+Prompts for the password and decrypts document.enc to document_decrypted.txt.
+
+Hash a File
+mtoolkit hash document.txt
+
+
+Outputs the SHA-256 hash of document.txt.
+
+Security
+
+Encryption: Uses AES-256-GCM with PBKDF2-derived keys, random salts, and IVs for robust security.
+Hashing: Employs SHA-256 for reliable file integrity checks.
+Password Safety: Ensure you remember your encryption password, as it cannot be recovered.
 
 Adding New Tools
-To add a new tool:
+MToolkit is designed to be extensible. To add a new tool:
 
-Create a module in the tools/ directory (e.g., tools/newTool.js).
-Export a function that registers commands with commander:module.exports = (program) => {
+Create a module in the tools/ directory (e.g., tools/newTool.js):module.exports = (program) => {
   program
     .command('newtool <arg>')
     .description('Description of new tool')
@@ -57,23 +80,53 @@ Export a function that registers commands with commander:module.exports = (progr
 };
 
 
-Import and register it in bin/mtoolkit.js:const newTool = require('../tools/newTool');
+Register it in bin/mtoolkit.js:const newTool = require('../tools/newTool');
 newTool(program);
 
 
+Update the banner in bin/mtoolkit.js to list the new tool.
 
 Development
-Clone the repository and install dependencies:
-git clone https://github.com/yourusername/mtoolkit.git
+To contribute or modify MToolkit:
+
+Clone the repository:
+git clone https://github.com/mugunth140/mtoolkit.git
 cd mtoolkit
+
+
+Install dependencies:
 npm install
 
-Link locally for testing:
+
+Test locally:
+node bin/mtoolkit.js
+
+
+Link for global testing:
 npm link
+mtoolkit
+
+
 
 Contributing
-Contributions are welcome! Please open an issue or submit a pull request on GitHub.
+Contributions are welcome! To contribute:
+
+Fork the repository.
+Create a feature branch (git checkout -b feature/new-tool).
+Commit your changes (git commit -m 'Add new tool').
+Push to the branch (git push origin feature/new-tool).
+Open a pull request.
+
+Please include tests and update documentation as needed.
+Issues
+Report bugs or suggest features on the GitHub Issues page.
 License
-MIT License. See LICENSE for details.
+MToolkit is licensed under the MIT License.
 Contact
-For issues, visit the GitHub Issues page.
+
+Author: Mugunth
+GitHub: mugunth140/mtoolkit
+npm: @mugunth140/mtoolkit
+
+
+Built with ❤️ for developers and power users.
