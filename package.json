@@ -1,16 +1,15 @@
 {
-  "name": "mtoolkit",
+  "name": "@mugunth140/mtoolkit",
   "version": "1.0.0",
   "description": "MToolkit: A cross-platform CLI with a collection of utility mini-tools",
   "main": "bin/mtoolkit.js",
   "bin": {
-    "mtoolkit": "./bin/mtoolkit.js"
+    "mtoolkit": "bin/mtoolkit.js"
   },
   "scripts": {
     "start": "node bin/mtoolkit.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  
   "keywords": [
     "cli",
     "toolkit",
@@ -28,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mugunth140/mtoolkit.git"
+    "url": "git+https://github.com/mugunth140/mtoolkit.git"
   },
   "homepage": "https://github.com/mugunth140/mtoolkit",
   "bugs": {
