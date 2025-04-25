@@ -1,0 +1,40 @@
+{
+  "name": "mtoolkit",
+  "version": "1.0.0",
+  "description": "MToolkit: A cross-platform CLI with a collection of utility mini-tools",
+  "main": "bin/mtoolkit.js",
+  "bin": {
+    "mtoolkit": "./bin/mtoolkit.js"
+  },
+  "scripts": {
+    "start": "node bin/mtoolkit.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  "keywords": [
+    "cli",
+    "toolkit",
+    "encryption",
+    "file-encryption",
+    "utilities",
+    "node-cli"
+  ],
+  "author": "mugunth140 <soulcyber148@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "figlet": "^1.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mugunth140/mtoolkit.git"
+  },
+  "homepage": "https://github.com/mugunth140/mtoolkit",
+  "bugs": {
+    "url": "https://github.com/mugunth140/mtoolkit/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
