@@ -1,83 +1,84 @@
-MToolkit
+# MToolkit
 
-MToolkit is a cross-platform command-line interface (CLI) tool that provides a collection of powerful and easy-to-use utilities for developers and power users. With a sleek interface and extensible design, MToolkit makes tasks like file encryption and hashing simple and secure.
-Features
+### MToolkit is a cross-platform command-line interface (CLI) tool that provides a collection of powerful and easy-to-use utilities for developers and power users. With a sleek interface and extensible design, MToolkit makes tasks like file encryption and hashing simple and secure.
 
-File Encryption/Decryption: Securely encrypt and decrypt files using AES-256-GCM with password-based key derivation.
-File Hashing: Generate SHA-256 hashes for file integrity verification.
-Cross-Platform: Runs seamlessly on Windows, macOS, and Linux.
-Extensible: Easily add new mini-tools to expand functionality.
-User-Friendly: Colorful ASCII banner and clear command structure.
+## Features
 
-Installation
-Install MToolkit globally via npm:
-npm install -g @mugunth140/mtoolkit
+- File Encryption/Decryption: Securely encrypt and decrypt files using AES-256-GCM with password-based key derivation.
+- File Hashing: Generate SHA-256 hashes for file integrity verification.
+- Cross-Platform: Runs seamlessly on Windows, macOS, and Linux.
+- Extensible: Easily add new mini-tools to expand functionality.
+- User-Friendly: Colorful ASCII banner and clear command structure.
+
+### Installation
+**Install MToolkit globally via npm:**
+`npm install -g @mugunth140/mtoolkit`
 
 Ensure you have Node.js (v14 or later) installed.
 Usage
-Run the MToolkit CLI:
-mtoolkit
+**Run the MToolkit CLI:**
+`mtoolkit`
 
 This displays a colorful banner and lists available tools. Use --help for detailed command information:
 mtoolkit --help
 
-Available Commands
+### Available Commands
 
 
 
-Command
-Description
+**Command**
+**Description**
 
 
 
-encrypt <input> <output>
+`encrypt <input> <output>`
 Encrypt a file with a password
 
 
-decrypt <input> <output>
+`decrypt <input> <output>`
 Decrypt a file with the same password
 
 
-hash <input>
+`hash <input>``
 Generate a SHA-256 hash of a file
 
 
 Examples
 Encrypt a File
-mtoolkit encrypt document.txt document.enc
+`mtoolkit encrypt document.txt document.enc`
 
 
 Prompts for a password and encrypts document.txt to document.enc.
 
 Decrypt a File
-mtoolkit decrypt document.enc document_decrypted.txt
+`mtoolkit decrypt document.enc document_decrypted.txt`
 
 
 Prompts for the password and decrypts document.enc to document_decrypted.txt.
 
 Hash a File
-mtoolkit hash document.txt
+`mtoolkit hash document.txt`
 
 
 Outputs the SHA-256 hash of document.txt.
 
-Security
+## Security
 
-Encryption: Uses AES-256-GCM with PBKDF2-derived keys, random salts, and IVs for robust security.
-Hashing: Employs SHA-256 for reliable file integrity checks.
-Password Safety: Ensure you remember your encryption password, as it cannot be recovered.
+**Encryption: Uses AES-256-GCM with PBKDF2-derived keys, random salts, and IVs for robust security.**
+- Hashing: Employs SHA-256 for reliable file integrity checks.
+- Password Safety: Ensure you remember your encryption password, as it cannot be recovered.
 
-Adding New Tools
+**Adding New Tools**
 MToolkit is designed to be extensible. To add a new tool:
 
-Create a module in the tools/ directory (e.g., tools/newTool.js):module.exports = (program) => {
+`Create a module in the tools/ directory (e.g., tools/newTool.js):module.exports = (program) => {
   program
     .command('newtool <arg>')
     .description('Description of new tool')
     .action((arg) => {
       console.log('New tool action:', arg);
     });
-};
+};`
 
 
 Register it in bin/mtoolkit.js:const newTool = require('../tools/newTool');
@@ -90,12 +91,12 @@ Development
 To contribute or modify MToolkit:
 
 Clone the repository:
-git clone https://github.com/mugunth140/mtoolkit.git
-cd mtoolkit
+`git clone https://github.com/mugunth140/mtoolkit.git`
+`cd mtoolkit`
 
 
 Install dependencies:
-npm install
+`npm install`
 
 
 Test locally:
@@ -103,8 +104,8 @@ node bin/mtoolkit.js
 
 
 Link for global testing:
-npm link
-mtoolkit
+`npm link`
+`mtoolkit`
 
 
 
