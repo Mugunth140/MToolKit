@@ -24,7 +24,7 @@ function generateKey(password, salt) {
 }
 
 // Encrypt a file
-async function encryptFile(inputFile, outputFile, password) {
+async function encryptFile(inputFile, password) {
   try {
     // Generate salt
     const salt = crypto.randomBytes(16);
@@ -49,8 +49,9 @@ async function encryptFile(inputFile, outputFile, password) {
     const outputData = Buffer.concat([salt, iv, authTag, encrypted]);
     
     // Write to output file
+    const outputFile = `${inputFile}.enc`;
     await fs.writeFile(outputFile, outputData);
-    
+
     console.log(`File encrypted successfully: ${outputFile}`);
   } catch (error) {
     console.error(`Encryption failed: ${error.message}`);
@@ -59,7 +60,7 @@ async function encryptFile(inputFile, outputFile, password) {
 }
 
 // Decrypt a file
-async function decryptFile(inputFile, outputFile, password) {
+async function decryptFile(inputFile, password) {
   try {
     // Read encrypted file
     const data = await fs.readFile(inputFile);
@@ -81,6 +82,7 @@ async function decryptFile(inputFile, outputFile, password) {
     const decrypted = Buffer.concat([decipher.update(encryptedData), decipher.final()]);
     
     // Write to output file
+    const outputFile = inputFile.endsWith('.enc') ? inputFile.slice(0, -4) : `${inputFile}.dec`;
     await fs.writeFile(outputFile, decrypted);
     
     console.log(`File decrypted successfully: ${outputFile}`);
@@ -93,18 +95,18 @@ async function decryptFile(inputFile, outputFile, password) {
 // Register commands with the program
 module.exports = (program) => {
   program
-    .command('encrypt <input> <output>')
+    .command('encrypt <input>')
     .description('Encrypt a file with a password')
-    .action(async (input, output) => {
+    .action(async (input) => {
       const password = await promptPassword();
-      await encryptFile(input, output, password);
+      await encryptFile(input, password);
     });
 
   program
-    .command('decrypt <input> <output>')
+    .command('decrypt <input>')
     .description('Decrypt a file with a password')
-    .action(async (input, output) => {
+    .action(async (input) => {
       const password = await promptPassword();
-      await decryptFile(input, output, password);
+      await decryptFile(input, password);
     });
 };

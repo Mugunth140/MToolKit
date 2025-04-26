@@ -31,11 +31,11 @@ mtoolkit --help
 
 
 
-`encrypt <input> <output>`
+`encrypt <input>`
 Encrypt a file with a password
 
 
-`decrypt <input> <output>`
+`decrypt <input>`
 Decrypt a file with the same password
 
 
